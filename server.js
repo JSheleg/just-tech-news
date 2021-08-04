@@ -5,6 +5,7 @@ const session = require('express-session');
 //set up handlebars as template engine (exphbs and hbs)
 const exphbs = require('express-handlebars');
 require('dotenv').config();
+const helpers = require('./utils/helpers');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -25,7 +26,7 @@ const sess = {
 
 
 app.use(session(sess));
-const hbs = exphbs.create({});
+const hbs = exphbs.create({helpers});
 
 //set up handlesbars as template engine part 2
 app.engine('handlebars', hbs.engine);
